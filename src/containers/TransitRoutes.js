@@ -11,21 +11,8 @@ class TransitRoutes extends React.Component {
         this.props.getTransitRoutes()
     }
 
-    componentDidUpdate() {
-
-        //set state if they dont update dropdown
-        //TODO: move to saga to set state intially
-        if (!this.props.direction) {
-            this.props.setTransitRoute(this.getCurrentSelectedValue())
-        }
-    }
-
-    getCurrentSelectedValue = () => {
-        return document.getElementById("transit-route-dropdown").value
-    }
-
     handleOnChange = (event) => {
-        this.props.setTransitRoute(this.getCurrentSelectedValue())
+        this.props.setTransitRoute(event.target.value)
     }
 
     render() {

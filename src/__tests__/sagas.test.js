@@ -1,4 +1,4 @@
-import { put, takeLatest } from 'redux-saga/effects'
+import { put, takeLatest, select } from 'redux-saga/effects'
 import { fetchTransitRoutes, actionWatcherGetTransitRoutes } from '../sagas/index'
 import * as ActionConstants from '../constants/ActionConstants'
 
@@ -15,11 +15,22 @@ describe('Sagas', () => {
             { Description: "METRO Blue Line", ProviderID: '8', Route: '901' },
             { Description: 'METRO Green Line', ProviderID: '8', Route: '902' },
             { Description: 'METRO Red Line', ProviderID: '9', Route: '903' }
-          ]
+        ]
+
         const generator = fetchTransitRoutes()
         generator.next()
         expect(generator.next(mockResponse).value)
             .toEqual(put({ type: ActionConstants.TRANSIT_ROUTES_RECEIVED, json: mockResponse }))
+
+        // const getTransitRoute = (state) => state.transitRoute
+        // expect(generator.next(mockResponse).value)
+        //     .toBe(select(getTransitRoute))
+        
+        //skip this for now. not sure how to test a select
+        generator.next(mockResponse)
+
+        expect(generator.next().value)
+            .toEqual(put({ type: ActionConstants.SET_TRANSIT_ROUTE, transitRoute: "901" }))
         expect(generator.next().done).toBeTruthy()
     })
 })
