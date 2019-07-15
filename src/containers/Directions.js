@@ -69,8 +69,6 @@ const mapStateToProps = (state) => ({
     directions: state.directions,
     transitRoute: state.transitRoute,
     direction: state.direction,
-    nextStep: state.nextStep,
-    backStep: state.backStep
 })
 
 const mapDispatchToProps = (dispatch) => ({
