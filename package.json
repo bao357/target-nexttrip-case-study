@@ -33,8 +33,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "http://www.bao357.com/target",
-  "devDependencies": {
-    "react-test-renderer": "^16.8.6"
-  }
+  "homepage": "http://www.bao357.com/target"
 }
