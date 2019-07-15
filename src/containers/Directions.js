@@ -4,20 +4,22 @@ import { getDirections, setDirection } from '../actions'
 import Error from '../containers/Error'
 import Loading from '../containers/Loading'
 import WizardNavigation from './WizardNavigation'
+import * as RouteConstants from '../constants/RouteConstants'
 
 class Directions extends React.Component {
 
     componentDidMount() {
-        if (this.props.bus) {
-            this.props.getDirections(this.props.bus)
+        if (this.props.transitRoute) {
+            this.props.getDirections(this.props.transitRoute)
         } else {
-            window.location.href = "/buses"
+            window.location.href = RouteConstants.TRANSIT_ROUTES_URL
         }
     }
 
     componentDidUpdate() {
 
         //set state if they dont update dropdown
+        //TODO: move to saga to set state intially
         if (!this.props.direction) {
             this.props.setDirection(this.getCurrentSelectedValue())
         }
@@ -37,19 +39,24 @@ class Directions extends React.Component {
 
         if (this.props && this.props.directions) {
             directions = this.props.directions.map((item) =>
-                <option key={item.Value} value={item.Value} data-direction={JSON.stringify(item)}>{item.Text}</option>
+                <option key={item.Value} value={item.Value}>{item.Text}</option>
             )
         }
 
         return (
-            <div>
+            <div className="directions-route-page">
                 <Error />
                 <Loading />
                 <div className="field">
                     <label className="label">Select your direction:</label>
                     <div className="control">
                         <div className="select">
-                            <select id="directions-dropdown" defaultValue={this.props.direction} onChange={this.handleOnChange}>{directions}</select>
+                            <select id="directions-dropdown"
+                                defaultValue={this.props.direction}
+                                onChange={this.handleOnChange}
+                            >
+                                {directions}
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -60,14 +67,14 @@ class Directions extends React.Component {
 }
 const mapStateToProps = (state) => ({
     directions: state.directions,
-    bus: state.bus,
+    transitRoute: state.transitRoute,
     direction: state.direction,
     nextStep: state.nextStep,
     backStep: state.backStep
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    getDirections: (bus) => { dispatch(getDirections(bus)) },
+    getDirections: (transitRoute) => { dispatch(getDirections(transitRoute)) },
     setDirection: (direction) => { dispatch(setDirection(direction)) }
 })
 

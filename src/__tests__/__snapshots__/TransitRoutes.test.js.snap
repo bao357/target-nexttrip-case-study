@@ -1,0 +1,114 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Transit routes happy path should render the transit routes after fetching the data 1`] = `
+<body>
+  <div>
+    <div
+      class="transit-routes-route-page"
+    >
+      <div
+        class="field"
+      >
+        <label
+          class="label"
+        >
+          Select your transit route:
+        </label>
+        <div
+          class="control"
+        >
+          <div
+            class="select"
+          >
+            <select
+              id="transit-route-dropdown"
+            >
+              <option
+                value="901"
+              >
+                METRO Blue Line
+              </option>
+              <option
+                value="902"
+              >
+                METRO Green Line
+              </option>
+              <option
+                value="903"
+              >
+                METRO Red Line
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div
+        class="navbar"
+      >
+        <p>
+          <a
+            class="button"
+            href="/"
+          >
+            Back
+          </a>
+          <a
+            class="button"
+            href="/directions"
+          >
+            Next
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Transit routes should render the Transit Route page with loading initially 1`] = `
+<body>
+  <div>
+    <div
+      class="transit-routes-route-page"
+    >
+      <div>
+        <h1>
+          LOADING
+        </h1>
+      </div>
+      <div
+        class="field"
+      >
+        <label
+          class="label"
+        >
+          Select your transit route:
+        </label>
+        <div
+          class="control"
+        >
+          <div
+            class="select"
+          >
+            <select
+              id="transit-route-dropdown"
+            />
+          </div>
+        </div>
+      </div>
+      <div
+        class="navbar"
+      >
+        <p>
+          <a
+            class="button"
+            href="/transitRoutes"
+          >
+            Next
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</body>
+`;

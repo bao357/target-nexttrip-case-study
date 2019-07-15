@@ -10,7 +10,7 @@ class WizardNavigation extends React.Component {
         let nextLink = nextStep ? <Link to={nextStep} className="button">Next</Link> : null
 
         return (
-            <div>
+            <div className="navbar">
                 <p>
                     {backLink}
                     {nextLink}

@@ -14,13 +14,14 @@ class TransitRoutes extends React.Component {
     componentDidUpdate() {
 
         //set state if they dont update dropdown
+        //TODO: move to saga to set state intially
         if (!this.props.direction) {
             this.props.setTransitRoute(this.getCurrentSelectedValue())
         }
     }
 
     getCurrentSelectedValue = () => {
-        return document.getElementById("bus-dropdown").value
+        return document.getElementById("transit-route-dropdown").value
     }
 
     handleOnChange = (event) => {
@@ -29,24 +30,29 @@ class TransitRoutes extends React.Component {
 
     render() {
 
-        let buses = []
+        let transitRouteList = []
 
         if (this.props && this.props.transitRoutes) {
 
-            buses = this.props.transitRoutes.map((item) => {
+            transitRouteList = this.props.transitRoutes.map((item) => {
                 return (<option key={item.Route} value={item.Route}>{item.Description}</option>)
             })
         }
 
         return (
-            <div>
+            <div className="transit-routes-route-page">
                 <Error />
                 <Loading />
                 <div className="field">
                     <label className="label">Select your transit route:</label>
                     <div className="control">
                         <div className="select">
-                            <select id="bus-dropdown" defaultValue={this.props.bus} onChange={this.handleOnChange}>{buses}</select>
+                            <select id="transit-route-dropdown"
+                                defaultValue={this.props.transitRoute}
+                                onChange={this.handleOnChange}
+                            >
+                                {transitRouteList}
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -58,12 +64,12 @@ class TransitRoutes extends React.Component {
 
 const mapStateToProps = (state) => ({
     transitRoutes: state.transitRoutes,
-    bus: state.bus
+    transitRoute: state.transitRoute
 })
 
 const mapDispatchToProps = (dispatch) => ({
     getTransitRoutes: () => { dispatch(getTransitRoutes()) },
-    setTransitRoute: (bus) => { dispatch(setTransitRoute(bus)) }
+    setTransitRoute: (transitRoute) => { dispatch(setTransitRoute(transitRoute)) }
 })
 
 TransitRoutes = connect(mapStateToProps, mapDispatchToProps)(TransitRoutes)

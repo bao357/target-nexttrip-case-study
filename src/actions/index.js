@@ -4,14 +4,14 @@ export const getTransitRoutes = () => ({
     type: ActionConstants.GET_TRANSIT_ROUTES,
 })
 
-export const setTransitRoute = (bus) => ({
-    type: ActionConstants.SET_BUS_ROUTE,
-    bus
+export const setTransitRoute = (transitRoute) => ({
+    type: ActionConstants.SET_TRANSIT_ROUTE,
+    transitRoute
 })
 
-export const getDirections = (bus) => ({
+export const getDirections = (transitRoute) => ({
     type: ActionConstants.GET_DIRECTIONS,
-    bus
+    transitRoute
 })
 
 export const setDirection = (direction) => ({
@@ -19,9 +19,9 @@ export const setDirection = (direction) => ({
     direction
 })
 
-export const getStops = (bus, direction) => ({
+export const getStops = (transitRoute, direction) => ({
     type: ActionConstants.GET_STOPS,
-    bus,
+    transitRoute,
     direction
 })
 

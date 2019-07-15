@@ -1,5 +1,7 @@
 import reducer from '../reducers/index'
 import * as action from '../actions/index'
+import * as RouteConstants from '../constants/RouteConstants'
+import * as ActionConstants from '../constants/ActionConstants'
 
 describe('Reducer', () => {
     it('should return the initial state', () =>
@@ -9,7 +11,7 @@ describe('Reducer', () => {
     it('should handle "GET_TRANSIT_ROUTES" action', () => {
         let mockData = {
             loading: true,
-            nextStep: "/buses"
+            nextStep: RouteConstants.TRANSIT_ROUTES_URL
         }
 
         expect(reducer({}, action.getTransitRoutes())).
@@ -25,11 +27,11 @@ describe('Reducer', () => {
         const mockDataResponse = {
             transitRoutes: mockJson,
             loading: false,
-            backStep: "/",
-            nextStep: "/directions"
+            backStep: RouteConstants.HOME_URL,
+            nextStep: RouteConstants.DIRECTIONS_URL
         }
 
-        expect(reducer({}, { type: "TRANSIT_ROUTES_RECEIVED", json: mockJson }))
+        expect(reducer({}, { type: ActionConstants.TRANSIT_ROUTES_RECEIVED, json: mockJson }))
             .toEqual(mockDataResponse)
     })
 })

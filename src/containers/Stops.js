@@ -1,19 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getStops } from '../actions'
-import Stop from './Stop'
+import Stop from '../components/Stop'
 import Error from '../containers/Error'
 import Loading from '../containers/Loading'
 import WizardNavigation from './WizardNavigation'
+import * as RouteConstants from '../constants/RouteConstants'
 
 class Stops extends React.Component {
 
     componentDidMount() {
 
-        if (this.props.bus && this.props.bus) {
-            this.props.getStops(this.props.bus, this.props.direction)
+        if (this.props.transitRoute && this.props.transitRoute) {
+            this.props.getStops(this.props.transitRoute, this.props.direction)
         } else {
-            window.location.href = "/buses"
+            window.location.href = RouteConstants.TRANSIT_ROUTES_URL
         }
     }
 
@@ -32,10 +33,10 @@ class Stops extends React.Component {
         }
 
         return (
-            <div>
+            <div className="stops-route-page">
                 <Error />
                 <Loading />
-                <h1>You have selected route: {this.props.bus}</h1>
+                <h1 className="title">Here are the stops for: {this.props.transitRoute}</h1>
                 <WizardNavigation />
                 <ul>{stops}</ul>
             </div>
@@ -44,12 +45,12 @@ class Stops extends React.Component {
 }
 const mapStateToProps = (state) => ({
     stops: state.stops,
-    bus: state.bus,
+    transitRoute: state.transitRoute,
     direction: state.direction
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    getStops: (bus, direction) => { dispatch(getStops(bus, direction)) }
+    getStops: (transitRoute, direction) => { dispatch(getStops(transitRoute, direction)) }
 })
 
 

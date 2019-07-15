@@ -7,7 +7,7 @@ export function* fetchTransitRoutes() {
             .then(response => response.json())
         yield put({ type: ActionConstants.TRANSIT_ROUTES_RECEIVED, json: json, })
     } catch (error) {
-        yield put({ type: ActionConstants.ERROR_SERVICE, error });
+        yield put({ type: ActionConstants.ERROR_SERVICE, error })
     }
 }
 export function* actionWatcherGetTransitRoutes() {
@@ -16,11 +16,11 @@ export function* actionWatcherGetTransitRoutes() {
 
 export function* fetchDirections(params) {
     try {
-        const json = yield fetch(`http://svc.metrotransit.org/NexTrip/Directions/${params.bus}?format=json`)
+        const json = yield fetch(`http://svc.metrotransit.org/NexTrip/Directions/${params.transitRoute}?format=json`)
             .then(response => response.json())
         yield put({ type: ActionConstants.DIRECTIONS_RECEIVED, json: json, })
     } catch (error) {
-        yield put({ type: ActionConstants.ERROR_SERVICE, error });
+        yield put({ type: ActionConstants.ERROR_SERVICE, error })
     }
 }
 export function* actionWatcherGetDirections() {
@@ -29,11 +29,11 @@ export function* actionWatcherGetDirections() {
 
 export function* fetchStops(params) {
     try {
-        const json = yield fetch(`http://svc.metrotransit.org/NexTrip/Stops/${params.bus}/${params.direction}?format=json`)
+        const json = yield fetch(`http://svc.metrotransit.org/NexTrip/Stops/${params.transitRoute}/${params.direction}?format=json`)
             .then(response => response.json())
         yield put({ type: ActionConstants.STOPS_RECEIVED, json: json, })
     } catch (error) {
-        yield put({ type: ActionConstants.ERROR_SERVICE, error });
+        yield put({ type: ActionConstants.ERROR_SERVICE, error })
     }
 }
 
